@@ -20,10 +20,10 @@ void controller::add_circle(const double x, const double y, const double r)
 			Q_ARG(QVariant, centre_y), Q_ARG(QVariant, radius));
 	}
 
-	std::vector<line> tangents;
-	tangent_lines(circles_[0], circles_[1], std::back_inserter(tangents));
-
 	if (circles_.size() == 2) {
+		std::vector<line> tangents;
+		tangent_lines(circles_.back(), circles_.front(),
+					  std::back_inserter(tangents));
 		for (const auto &tangent : tangents) {
 			QVariant a_x = tangent.begin().x();
 			QVariant a_y = tangent.begin().y();
