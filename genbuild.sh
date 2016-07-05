@@ -17,14 +17,16 @@ cmakeargs=" \
 	-DCMAKE_BUILD_TYPE=Custom \
 	-DCMAKE_VERBOSE_MAKEFILE=OFF "
 
-if [[ $# -eq 1 ]] || [[ $1 -eq "debug" ]]; then
+if [ $# == 0 ] || [ $1 == "debug" ]; then
+	echo 'Generating debug build'
 	cxxflags="${cxxflags} -O2 -g3"
 	cmakeargs="${cmakeargs} -DBUILD_DEBUG=ON"
 	if [[ ! -d build/debug ]]; then
 		mkdir -pv build/debug
 	fi
 	cd build/debug
-elif [[ $1 -eq "release" ]]; then
+elif [ $1 == "release" ]; then
+	echo 'Generating release build'
 	cxxflags="${cxxflags} -O2 -g0"
 	cmakeargs="${cmakeargs} -DBUILD_DEBUG=OFF"
 	if [[ ! -d build/release ]]; then
@@ -32,11 +34,11 @@ elif [[ $1 -eq "release" ]]; then
 	fi
 	cd build/release
 else
-	echo "Wrong argument should be release or debug"
+	echo "Wrong argument. Should be release or debug"
 	exit 1
 fi
 
-yes | rm -rvf *
+yes | rm -rf *
 
 CXX=${CXX:=${cxx}} \
 CC=${CC:=${cc}} \
