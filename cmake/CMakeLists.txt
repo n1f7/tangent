@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.5.2)
-project(TANGENT VERSION 0.0.0 LANGUAGES CXX C)
+cmake_minimum_required(VERSION 2.8.11)
+project(TANGENT LANGUAGES CXX C)
 
 set(TANGENT_SOURCE_DIR ${TANGENT_SOURCE_DIR}/../)
 set(CMAKE_MODULE_PATH ${TANGENT_SOURCE_DIR}/cmake)
